@@ -44,7 +44,6 @@ return (
     <input type="hidden" value={user.chatbotKey} />
     <span className="sidebarUserName">{user.username}</span>
     {/* Adding a clickable delete icon with an onClick handler */}
-    {/* You can use any image source you want for the icon */}
     <img
       className="deleteIcon"
       src={`${PF}delete.png`}

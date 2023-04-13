@@ -28,6 +28,8 @@ export default function Registerchatbot() {
 
   
 
+  
+
   const handleCheckboxChange = (e) => {
     setPublicbotChecked(e.target.checked);
     publicbot.current.value = e.target.checked;
@@ -51,6 +53,8 @@ export default function Registerchatbot() {
   const handleClick = async (e) => {
     e.preventDefault();
     // console.log(publicbotChecked.current.value);
+
+   
     
       const chatbot = {
         chatbotMaster: chatbotMaster,

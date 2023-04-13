@@ -18,7 +18,13 @@
 
 .postTopLeft {
   display: flex;
+  align-items: left;
+}
+
+.postTopRight {
+  display: flex;
   align-items: center;
+  font-weight: 400;
 }
 
 .postProfileImg {
@@ -38,6 +44,27 @@
     font-size: 12px;
 }
 
+.chatbotField{
+  font-size: 12px;
+  margin-right: 10px;
+  
+}
+
+.chatbotFieldBold{
+  font-size: 16px;
+  margin-right: 10px;
+  font-weight: bold; 
+}
+
+.checkboxitem
+{
+  margin-right: 10px;
+}
+
+.checkbox
+{
+  font-weight: bold;
+}
 .postCenter{
     margin: 20px 0;
 }
@@ -65,6 +92,29 @@
     height: 24px;
     margin-right: 5px;
     cursor: pointer;
+}
+
+.deleteIcon{
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+
+  cursor: pointer;
+}
+
+.mailIcon{
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.chatIcon{
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .postLikeCounter{
