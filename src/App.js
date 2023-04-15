@@ -2,6 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import Updateuser from "./pages/updateuser/Updateuser";
 import Registerchatbot from "./pages/registerchatbot/Registerchatbot";
 import {
   BrowserRouter as Router,
@@ -23,6 +24,9 @@ function App() {
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/updateuser">
+          <Updateuser />
         </Route>
         <Route path="/registerchatbot/:username/:chatbotMaster">
           <Registerchatbot />

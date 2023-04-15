@@ -43,7 +43,7 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-        <Link to={`/profile/${user.username}/${user.chatbotKey}`}>
+        <Link to={`/updateuser/`}>
           <img
             src={
               user.profilePicture
