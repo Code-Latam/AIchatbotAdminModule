@@ -5,8 +5,11 @@ import { useHistory } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
+
 export default function Updateuser() {
 
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
   const { user: currentUser } = useContext(AuthContext);
   console.log(currentUser);
 
@@ -25,6 +28,8 @@ export default function Updateuser() {
       passwordAgain.current.setCustomValidity("Passwords don't match!");
     } else {
       const user = {
+        clientNr: clientNr,
+        gwoken: gwokuToken,
         chatbotKey: chatbotKey.current.value,
         username: username.current.value,
         email: email.current.value,

@@ -12,6 +12,8 @@ export default function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useHistory();
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ export default function Register() {
       passwordAgain.current.setCustomValidity("Passwords don't match!");
     } else {
       const user = {
+        clientNr: clientNr,
+        gwoken:gwokuToken,
         chatbotKey: chatbotKey.current.value,
         username: username.current.value,
         email: email.current.value,

@@ -6,17 +6,22 @@ import { CircularProgress } from "@material-ui/core";
 
 
 
+
+
 export default function Login() {
   
   const chatbotKey = useRef();
   const email = useRef();
   const password = useRef();
   const { isFetching, dispatch } = useContext(AuthContext);
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  console.log("client number =" + clientNr );
 
   const handleClick = (e) => {
     e.preventDefault();
     loginCall(
-      { chatbotKey: chatbotKey.current.value, email: email.current.value, password: password.current.value },
+      { clientNr: clientNr, gwoken: gwokuToken,chatbotKey: chatbotKey.current.value, email: email.current.value, password: password.current.value },
       dispatch
     );
    //  history.push("/updateuser");

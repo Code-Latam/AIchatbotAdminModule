@@ -67,6 +67,7 @@
   margin-right: 10px; /* adjust as needed */
   width: 20px;
   height: 20px;
+  accent-color: red;
 }
 
 .mytextarea { 

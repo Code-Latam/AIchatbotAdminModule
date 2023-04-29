@@ -22,11 +22,18 @@ import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
   const { user } = useContext(AuthContext);
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  const chat_url = process.env.REACT_APP_CHAT_URL;
+  
+
   console.log(user.chatbotKey);
 
   const [users, setUsers] = useState([]);
 
   var body = {
+    clientNr: clientNr,
+    gwoken: gwokuToken,
     chatbotKey: user.chatbotKey   
   };
 
@@ -50,7 +57,7 @@ export default function Sidebar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
-            <span className="sidebarListItemText">AI Chatbot support for this module</span>
+            <Link to={{ pathname:  chat_url }} target="_blank" style={{ textDecoration: 'none',color: 'black'  }}>AI Chatbot support for this module</Link>
           </li>
           <li className="sidebarListItem">
             <Videocam className="sidebarIcon" />

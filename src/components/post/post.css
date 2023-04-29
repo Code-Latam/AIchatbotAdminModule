@@ -58,12 +58,20 @@
 
 .checkboxitem
 {
-  margin-right: 10px;
+  margin-right: 5px;
+  accent-color: red;
+}
+
+
+
+.checkmark:disabled {
+  color: red;
 }
 
 .checkbox
 {
   font-weight: bold;
+  accent-color: red;
 }
 .postCenter{
     margin: 20px 0;

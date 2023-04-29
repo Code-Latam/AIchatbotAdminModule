@@ -16,15 +16,19 @@ export default function Registerchatbot() {
   const formRef = useRef(null);
   const chatbotKey = useRef();
   const openaiKey = useRef();
+  const descriptiveName = useRef();
   const name = useRef();
   const email = useRef();
-  const publicbot = useRef("false");
-  const paid = useRef("false");
-  const enabled = useRef("false");
-  const isAdminModule = useRef("false");
+  const initialPassword = useRef();
+  const publicbot = useRef(false);
+  const paid = useRef(false);
+  const enabled = useRef(false);
+  const isAdminModule = useRef(false);
   const promptTemplate = useRef();
   const idEnroller = useRef();
   const history = useHistory();
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
 
   
 
@@ -57,18 +61,23 @@ export default function Registerchatbot() {
    
     
       const chatbot = {
+        clientNr: clientNr,
+        gwoken: gwokuToken,
         chatbotMaster: chatbotMaster,
         chatbotKey: chatbotKey.current.value,
         openaiKey: openaiKey.current.value,
+        descriptiveName: descriptiveName.current.value,
         name: name.current.value,
+        initialPassword: initialPassword.current.value,
         email: email.current.value,
         publicbot: publicbot.current.value,
         paid: paid.current.value,
         enabled: enabled.current.value,
         isAdminModule: isAdminModule.current.value,
-        promptTemplate: promptTemplate.current.value,
         idEnroller: username,
       };
+
+      
       console.log(chatbot);
       try {
         await axios.post("/chatbots/register", chatbot);
@@ -110,7 +119,13 @@ export default function Registerchatbot() {
               className="loginInput"
             />
             <input
-              placeholder="Name"
+              placeholder="Short descriptive name"
+              required
+              ref={descriptiveName}
+              className="loginInput"
+            />
+            <input
+              placeholder="Name collection"
               required
               ref={name}
               className="loginInput"
@@ -122,6 +137,12 @@ export default function Registerchatbot() {
               className="loginInput"
               type="email"
             />
+            <input
+              placeholder="Initial Password"
+              required
+              ref={initialPassword}
+              className="loginInput"
+            />
             <div style={{ display: "flex", flexDirection: "row" }}> 
             <label className="checkboxLabel">
             Public bot
@@ -130,7 +151,7 @@ export default function Registerchatbot() {
               className = "checkmark"
               type="checkbox"
               checked={publicbotChecked}
-              defaultValue={"false"}
+              
               onChange={handleCheckboxChange}
             />
             </label>
@@ -141,7 +162,7 @@ export default function Registerchatbot() {
               className = "checkmark"
               type="checkbox"
               checked={paidChecked}
-              defaultValue={"false"}
+            
               onChange={paidCheckboxChange}
             />
             </label>
@@ -152,7 +173,7 @@ export default function Registerchatbot() {
               className = "checkmark"
               type="checkbox"
               checked={enabledChecked}
-              defaultValue={"false"}
+              
               onChange={enabledCheckboxChange}
             />
             </label>
@@ -163,17 +184,12 @@ export default function Registerchatbot() {
               className = "checkmark"
               type="checkbox"
               checked={isAdminModuleChecked}
-              defaultValue={"false"}
+              
               onChange={isAdminModuleCheckboxChange}
             />
             </label>
             </div>
-            <textarea
-              className = "mytextarea"
-              placeholder="Prompt Template"
-              required
-              ref={promptTemplate}
-            />
+            
             <button className="loginButton" type="submit">
               Registerchatbot
             </button>

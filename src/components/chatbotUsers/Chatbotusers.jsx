@@ -7,8 +7,11 @@ import { useHistory } from "react-router";
 
 
 export default function ChatbotUsers({user}) {
+
   var history = useHistory();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
 
 // A function that handles the delete icon click
 const handleDelete = async () => {
@@ -23,7 +26,14 @@ const handleDelete = async () => {
   if (confirmed) {
     // Making a post request to the API with the user data
     try {
-      await axios.post("/users/delete", { username, email, chatbotKey });
+      const body = {
+        clientNr: clientNr,
+        gwoken: gwokuToken,
+        username:username,
+        email: email,
+        chatbotKey:chatbotKey
+      }
+      await axios.post("/users/delete", body);
       // Optionally, you can do something after the request is successful
       // For example, alert the user or refresh the page
       alert(`User ${username} deleted successfully`);

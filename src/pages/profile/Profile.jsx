@@ -9,11 +9,16 @@ import { useParams } from "react-router-dom";
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+
   const [user, setUser] = useState({});
 
   const {username,chatbotKey} = useParams();
 
   var body = {
+    clientNr: clientNr,
+    gwoken: gwokuToken,
     chatbotKey: chatbotKey,
     username: username
   }

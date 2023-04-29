@@ -8,9 +8,15 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Feed({ username }) {
   const [chatbots, setChatbots] = useState([]);
   const { user } = useContext(AuthContext);
+  const clientNr = process.env.REACT_APP_CLIENTNR;
+  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+
+
 
   useEffect(() => {
     var body = {
+      clientNr: clientNr,
+      gwoken: gwokuToken,
       chatbotMaster: user.chatbotKey  
     };
     console.log("chatbotkey = " + body.chatbotMaster);
