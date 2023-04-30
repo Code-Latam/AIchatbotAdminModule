@@ -12,6 +12,8 @@ export default function ChatbotUsers({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const clientNr = process.env.REACT_APP_CLIENTNR;
   const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  const chat_url = process.env.REACT_APP_CHAT_URL;
+  const admin_module_url = process.env.REACT_APP_ADMIN_URL;
 
 // A function that handles the delete icon click
 const handleDelete = async () => {
@@ -53,6 +55,22 @@ return (
     <input type="hidden" value={user.email} />
     <input type="hidden" value={user.chatbotKey} />
     <span className="sidebarUserName">{user.username}</span>
+{/* Adding a clickable email icon */}
+    <a href={`mailto:${user.email }?subject=Gwocu Chatbot&body=Dear ${user.username},%0D%0DYour email has been linked to a chatbot. If you are an administrator, you will be able to use the Administrative Module.%0D%0DIf you are only a chatbot user you will only be able to use the chatbot.%0D%0DPlease find below your login credentials. Change your password as soon as you login.%0D%0DYour credentials are:%0D%0D
+chatbot URL: ${chat_url}/${user.chatbotKey}%0D
+chatbot Admin Module URL: ${admin_module_url}%0D
+ChatbotKey: ${user.chatbotKey}%0D
+email: ${user.email }%0D
+Initial Password: Your password will be sent through a seperate channel.%0D%0D
+Have fun with your chatbot!%0D`}
+          >
+          <img
+          className="mailIcon"
+          src={`${PF}email.png`}
+          alt="email"
+          />
+          </a>
+
     {/* Adding a clickable delete icon with an onClick handler */}
     <img
       className="deleteIcon"

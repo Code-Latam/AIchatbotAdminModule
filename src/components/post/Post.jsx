@@ -40,6 +40,7 @@ export default function Post({ post }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const clientNr = process.env.REACT_APP_CLIENTNR;
   const chat_url = process.env.REACT_APP_CHAT_URL;
+  const admin_module_url = process.env.REACT_APP_ADMIN_URL;
   const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
 
   
@@ -228,7 +229,9 @@ const handleDelete = async () => {
           alt="Chat"
           />
           </a>
-          <a href={`mailto:${post.email }?subject=Your chatbot has been registered&body=Please find below your login credentials. Change your password as soon as you login.%0DYour credentials are:%0D%0D
+          <a href={`mailto:${post.email }?subject=Gwocu Chatbot&body=Dear Administrator,%0D%0DYour email has been linked to a chatbot. You will be able to use the Administrative Module and the regular chatbot.%0D%0DPlease find below your login credentials. Change your password as soon as you login.%0D%0DYour credentials are:%0D%0D
+chatbot URL: ${chat_url}/${post.chatbotKey}%0D
+Administrative Module URL: ${admin_module_url}%0D
 ChatbotKey: ${post.chatbotKey}%0D
 email: ${post.email }%0D
 Initial Password: ${post.initialPassword }%0D%0D
