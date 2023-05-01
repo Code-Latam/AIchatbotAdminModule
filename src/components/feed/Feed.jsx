@@ -24,7 +24,7 @@ export default function Feed({ username }) {
       if (!username)
       {
         // await axios.get("/posts/profile/" + username)
-      const res = await axios.post("/chatbots/queryall/", body);
+      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/queryall/", body);
       console.log(res.data);
       setChatbots(
         res.data.sort((p1, p2) => {

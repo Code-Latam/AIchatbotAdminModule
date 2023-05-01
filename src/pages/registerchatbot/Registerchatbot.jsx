@@ -80,7 +80,7 @@ export default function Registerchatbot() {
       
       console.log(chatbot);
       try {
-        await axios.post("/chatbots/register", chatbot);
+        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/register", chatbot);
         alert("Chatbot has been registered");
         formRef.current.reset(); // clear the form fields
         // reset the checkboxes

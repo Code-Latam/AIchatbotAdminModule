@@ -35,7 +35,7 @@ const handleDelete = async () => {
         email: email,
         chatbotKey:chatbotKey
       }
-      await axios.post("/users/delete", body);
+      await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/delete", body);
       // Optionally, you can do something after the request is successful
       // For example, alert the user or refresh the page
       alert(`User ${username} deleted successfully`);

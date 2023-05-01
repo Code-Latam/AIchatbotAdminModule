@@ -38,7 +38,7 @@ export default function Sidebar() {
   };
 
   useEffect(async () => {
-    const result = await axios.post("/users/queryall", body);
+    const result = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/queryall", body);
 
     // console.log(res.data);
     setUsers(

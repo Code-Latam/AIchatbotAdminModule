@@ -36,7 +36,7 @@ export default function Updateuser() {
         password: password.current.value,
       };
       try {
-        await axios.post("/users/update", user);
+        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/update", user);
         alert("User has been updated");
         history.push("/");
       } catch (err) {

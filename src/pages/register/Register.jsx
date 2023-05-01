@@ -29,7 +29,7 @@ export default function Register() {
         password: password.current.value,
       };
       try {
-        await axios.post("/auth/register", user);
+        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/auth/register", user);
         alert("User has been registered");
         formRef.current.reset(); // clear the form fields
         history.push("/register");

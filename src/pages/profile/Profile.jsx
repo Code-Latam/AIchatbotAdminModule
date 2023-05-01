@@ -27,7 +27,7 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.post("/users/query",body);
+      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/query",body);
       setUser(res.data);
     };
     fetchUser();
