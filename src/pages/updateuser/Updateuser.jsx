@@ -49,7 +49,7 @@ export default function Updateuser() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">DevX.Chat</h3>
+          <h3 className="loginLogo">GWOCU Chat</h3>
           <span className="loginDesc">
             Change your password regularly for more security.
           </span>

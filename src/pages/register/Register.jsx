@@ -43,7 +43,7 @@ export default function Register() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">DevX.Chat</h3>
+          <h3 className="loginLogo">GWOCU Chat</h3>
           <span className="loginDesc">
             Register all your users in one place.
           </span>
