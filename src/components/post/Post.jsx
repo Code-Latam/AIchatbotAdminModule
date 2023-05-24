@@ -189,12 +189,13 @@ const handleDelete = async () => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
+          <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}`} target="_blank">
           <img
           className="chatIcon"
           src={`${PF}chatgpt.png`}
           alt="Chat"
-          onClick={handleDelete}
           />
+          </a>
           <span className="chatbotFieldBold">{post.descriptiveName}</span>
          
           </div>
@@ -222,13 +223,13 @@ const handleDelete = async () => {
             <span className="postLikeCounter"> From a total of {chatTotal} questions last month, the bot gave {chatTotalSatisfactory} satisfactory and {chatTotalNotSatisfactory} unsatisfactory answers</span>
           </div>
           <div className="postBottomRight">
-          <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}`} target="_blank">
+          <Link to={{ pathname: "/uploadfiles", state: { chatbotKey: post.chatbotKey, descriptiveName: post.descriptiveName,chatbotMaster: post.chatbotMaster } }}>
           <img
-          className="chatIcon"
-          src={`${PF}chatgpt.png`}
-          alt="Chat"
+          className="fileIcon"
+          src={`${PF}upload.png`}
+          alt="File"
           />
-          </a>
+          </Link>
           <a href={`mailto:${post.email }?subject=Gwocu Chatbot&body=Dear Administrator,%0D%0DYour email has been linked to a chatbot. You will be able to use the Administrative Module and the regular chatbot.%0D%0DPlease find below your login credentials. Change your password as soon as you login.%0D%0DYour credentials are:%0D%0D
 chatbot URL: ${chat_url}/${post.chatbotKey}%0D
 Administrative Module URL: ${admin_module_url}%0D

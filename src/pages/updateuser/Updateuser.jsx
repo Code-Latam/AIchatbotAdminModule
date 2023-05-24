@@ -4,6 +4,7 @@ import "./updateuser.css";
 import { useHistory } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Topbar from "../../components/topbar/Topbar";
 
 
 export default function Updateuser() {
@@ -46,6 +47,8 @@ export default function Updateuser() {
   };
 
   return (
+    <>
+    <Topbar />
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
@@ -104,5 +107,6 @@ export default function Updateuser() {
         </div>
       </div>
     </div>
+    </>
   );
 }

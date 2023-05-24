@@ -40,6 +40,7 @@ export default function Register() {
   };
 
   return (
+    
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
@@ -92,5 +93,6 @@ export default function Register() {
         </div>
       </div>
     </div>
+  
   );
 }

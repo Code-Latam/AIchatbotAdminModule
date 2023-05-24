@@ -4,6 +4,7 @@ import "./registerchatbot.css";
 import { useHistory } from "react-router";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import Topbar from "../../components/topbar/Topbar";
 
 export default function Registerchatbot() {
   const [publicbotChecked, setPublicbotChecked] = useState(false);
@@ -96,6 +97,8 @@ export default function Registerchatbot() {
   };
 
   return (
+    <>
+    <Topbar />
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
@@ -198,5 +201,6 @@ export default function Registerchatbot() {
         </div>
       </div>
     </div>
+    </>
   );
 }

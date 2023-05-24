@@ -2,6 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import Uploadfiles from "./pages/uploadfiles/Uploadfiles";
 import Updateuser from "./pages/updateuser/Updateuser";
 import Registerchatbot from "./pages/registerchatbot/Registerchatbot";
 import {
@@ -24,6 +25,9 @@ function App() {
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/uploadfiles">
+          <Uploadfiles />
         </Route>
         <Route path="/updateuser">
           <Updateuser />
