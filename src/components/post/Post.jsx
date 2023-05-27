@@ -189,7 +189,7 @@ const handleDelete = async () => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-          <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}`} target="_blank">
+          <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}&descriptivename=${post.descriptiveName}`} target="_blank">
           <img
           className="chatIcon"
           src={`${PF}chatgpt.png`}
