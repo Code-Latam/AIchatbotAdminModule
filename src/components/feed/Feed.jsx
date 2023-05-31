@@ -11,19 +11,33 @@ export default function Feed({ username }) {
   const clientNr = process.env.REACT_APP_CLIENTNR;
   const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
 
+ // get the chatbot master of the chatbot created for this user
 
+
+ 
 
   useEffect(() => {
-    var body = {
-      clientNr: clientNr,
-      gwoken: gwokuToken,
-      chatbotMaster: user.chatbotKey  
-    };
-    console.log("chatbotkey = " + body.chatbotMaster);
+
+
+    
+
+     
+  
+    
+
     const fetchChatbots = async () => {
       if (!username)
       {
-        // await axios.get("/posts/profile/" + username)
+        // get the chatbot master
+        
+        var body = {
+          clientNr: clientNr,
+          gwoken: gwokuToken,
+          chatbotMaster: user.chatbotKey
+        }
+        console.log("response = ");
+       
+        // query all the bots
       const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/queryall/", body);
       console.log(res.data);
       setChatbots(

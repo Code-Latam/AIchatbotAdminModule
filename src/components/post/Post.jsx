@@ -142,7 +142,7 @@ const handleDelete = async () => {
         start : formattedDateoneMonthAgo,
         end : getFormattedDate()
       }
-      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "chathistory/queryperiodcount", body);
+      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chathistory/queryperiodcount", body);
       setChatTotalSatisfactory(res.data);
     };
     fetchChatTotalSatisfactory();
@@ -159,7 +159,7 @@ const handleDelete = async () => {
         start : formattedDateoneMonthAgo,
         end : getFormattedDate()
       }
-      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "chathistory/queryperiodcount", body);
+      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chathistory/queryperiodcount", body);
       setChatTotalNotSatisfactory(res.data);
     };
     fetchChatTotalNotSatisfactory();
@@ -176,7 +176,7 @@ const handleDelete = async () => {
         start : formattedDateoneMonthAgo,
         end : getFormattedDate()
       }
-      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "chathistory/queryperiodcount", body);
+      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chathistory/queryperiodcount", body);
       setChatTotal(res.data);
     };
     fetchChatTotal();
