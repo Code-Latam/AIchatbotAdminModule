@@ -7,7 +7,22 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
-
+import {
+  RssFeed,
+  Chat,
+  PlayCircleFilledOutlined,
+  Group,
+  Bookmark,
+  HelpOutline,
+  WorkOutline,
+  Event,
+  School,
+  Videocam,
+  Adb,
+  Email,
+  Delete,
+  FileCopy
+} from "@material-ui/icons";
 
 function evaluate(S, U) {
   
@@ -191,8 +206,8 @@ const handleDelete = async () => {
           <div className="postTopLeft">
           <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}&descriptivename=${post.descriptiveName}`} target="_blank">
           <img
-          className="chatIcon"
-          src={`${PF}chatgpt.png`}
+          className="postIcon"
+          src='assets/gwocu.png'
           alt="Chat"
           />
           </a>
@@ -224,8 +239,8 @@ const handleDelete = async () => {
           </div>
           <div className="postBottomRight">
           <Link to={{ pathname: "/uploadfiles", state: { chatbotKey: post.chatbotKey, descriptiveName: post.descriptiveName,chatbotMaster: post.chatbotMaster } }}>
-          <img
-          className="fileIcon"
+          <FileCopy
+          className="postIcon"
           src={`${PF}upload.png`}
           alt="File"
           />
@@ -238,15 +253,13 @@ email: ${post.email }%0D
 Initial Password: ${post.initialPassword }%0D%0D
 Have fun with your chatbot!%0D`}
           >
-          <img
-          className="mailIcon"
-          src={`${PF}email.png`}
+          <Email
+          className="postIcon"
           alt="email"
           />
           </a>
-          <img
-          className="deleteIcon"
-          src={`${PF}delete.png`}
+          <Delete
+          className="postIcon"
           alt="Delete"
           onClick={handleDelete}
           />

@@ -3,6 +3,22 @@ import axios from "axios";
 import "./chatbotUsers.css";
 import { useHistory } from "react-router";
 
+import {
+  RssFeed,
+  Chat,
+  PlayCircleFilledOutlined,
+  Group,
+  Bookmark,
+  HelpOutline,
+  WorkOutline,
+  Event,
+  School,
+  Videocam,
+  Adb,
+  Email,
+  Delete
+} from "@material-ui/icons";
+
 
 
 
@@ -64,16 +80,16 @@ email: ${user.email }%0D
 Initial Password: Your password will be sent through a seperate channel.%0D%0D
 Have fun with your chatbot!%0D`}
           >
-          <img
-          className="mailIcon"
+          <Email
+          className="userIcon"
           src={`${PF}email.png`}
           alt="email"
           />
           </a>
 
     {/* Adding a clickable delete icon with an onClick handler */}
-    <img
-      className="deleteIcon"
+    <Delete
+      className="userIcon"
       src={`${PF}delete.png`}
       alt="Delete"
       onClick={handleDelete}

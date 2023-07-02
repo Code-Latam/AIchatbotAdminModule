@@ -1,7 +1,8 @@
 .login {
   width: 100vw;
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: #1e1e1e;
+  color: #03A062;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,6 +12,7 @@
   width: 70%;
   height: 70%;
   display: flex;
+
 }
 
 .loginLeft,
@@ -19,27 +21,30 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 }
 
 .loginLogo {
   font-size: 50px;
   font-weight: 800;
-  color: #0e3a74;
   margin-bottom: 10px;
+  color:darkgray;
 }
 
 .loginDesc {
   font-size: 24px;
+  color: darkGray;
 }
 
 .loginBox{
     height: 1200px;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #98FF98;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+   
 }
 
 .loginInput{
@@ -48,10 +53,12 @@
     border: 1px solid gray;
     font-size: 18px;
     padding-left: 20px;
+    color:darkgray;  
+  background-color: black;
 }
 
 .checkboxLabel{
-  display: flex;
+  
   align-items: center;
   height: 50px;
   border-radius: 10px;
@@ -67,7 +74,8 @@
   margin-right: 10px; /* adjust as needed */
   width: 20px;
   height: 20px;
-  accent-color: red;
+  color: black;
+  accent-color: rgb(44, 67, 3);
 }
 
 .mytextarea { 
@@ -87,9 +95,9 @@
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: #0e3a74;
+    background-color: rgb(44, 67, 3);
     ;
-    color: white;
+    color: darkgray;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
@@ -106,8 +114,8 @@
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: #12360b;
-    color: white;
+    background-color: rgb(44, 67, 3);
+    color: darkGray;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;

@@ -57,7 +57,9 @@ export default function Sidebar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <Chat className="sidebarIcon" />
-            <Link to={{ pathname:  chat_url }} target="_blank" style={{ textDecoration: 'none',color: 'black'  }}>AI Chatbot support for this module</Link>
+            <span className="sidebarListItemText">
+            <Link to={{ pathname:  chat_url }} target="_blank" style={{ textDecoration: 'none',color: '#03A062'  }}>AI Chatbot support for this module</Link>
+            </span>
           </li>
           <li className="sidebarListItem">
             <Videocam className="sidebarIcon" />
@@ -65,18 +67,17 @@ export default function Sidebar() {
           </li>
           <li className="sidebarListItem">
             <Group className="sidebarIcon" />
-            <Link to="/register" style={{ textDecoration: 'none',color: 'black'  }}>Register Users</Link>
+            <Link to="/register" style={{ textDecoration: 'none',color: '#03A062'  }}>Register Users</Link>
           </li>
           <li className="sidebarListItem">
             <Adb className="sidebarIcon" />
-            <Link to={`/registerchatbot/${user.username}/${user.chatbotKey}`} style={{ textDecoration: 'none',color: 'black'  }} >Register Chatbots</Link>
+            <Link to={`/registerchatbot/${user.username}/${user.chatbotKey}`} style={{ textDecoration: 'none',color: '#03A062'  }} >Register Chatbots</Link>
           </li>
           <li className="sidebarListItem">
             <HelpOutline className="sidebarIcon" />
             <span className="sidebarListItemText">Chat History Query</span>
           </li>
         </ul>
-        <button className="sidebarButton">Show More</button>
         <hr className="sidebarHr" />
         <h4>Users</h4>
         <hr className="sidebarHr" />

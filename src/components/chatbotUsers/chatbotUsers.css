@@ -23,4 +23,13 @@
     height: 24px;
     margin-right: 5px;
     cursor: pointer;
+    color: darkgray
+}
+
+.userIcon{
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: darkgray
 }

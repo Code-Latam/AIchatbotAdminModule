@@ -1,4 +1,4 @@
-.updateuser {
+.login {
   width: 100vw;
   height: 100vh;
   background-color: #1e1e1e;
@@ -8,80 +8,78 @@
   justify-content: center;
 }
 
-.updateuserWrapper {
+.loginWrapper {
   width: 70%;
   height: 70%;
   display: flex;
 }
 
-.updateuserLeft,
-.updateuserRight {
+.loginLeft,
+.loginRight {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.updateuserLogo {
+.loginLogo {
   font-size: 50px;
   font-weight: 800;
-  color:darkgray;
+  color: #0e3a74;
   margin-bottom: 10px;
 }
 
-.updateuserDesc {
+.loginDesc {
   font-size: 24px;
-  color: darkGray;
 }
 
-.updateuserBox{
+.loginBox{
     height: 400px;
     padding: 20px;
-    background-color:#98FF98;
+    background-color: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.updateuserInput{
+.loginInput{
     height: 50px;
     border-radius: 10px;
     border: 1px solid gray;
     font-size: 18px;
     padding-left: 20px;
-    color:darkgray;  
-    background-color: black;
 }
 
-.updateuserInput:focus{
+.loginInput:focus{
     outline: none;
 }
 
-.updateuserButton{
+.loginButton{
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: rgb(44, 67, 3);
-    color: darkgray;
+    background-color: #0e3a74;
+    ;
+    color: white;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
 }
 
-.updateuserForgot{
+.loginForgot{
     text-align: center;
     color: #0e3a74;
 }
 
-.updateuserRegisterButton{
+.loginRegisterButton{
     width: 60%;
     align-self: center;
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: rgb(44, 67, 3);
-    color: darkgray;
+    background-color: #12360b;
+    color: white;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;

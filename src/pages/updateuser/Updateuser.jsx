@@ -49,21 +49,21 @@ export default function Updateuser() {
   return (
     <>
     <Topbar />
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">GWOCU Chat</h3>
-          <span className="loginDesc">
+    <div className="updateuser">
+      <div className="updateuserWrapper">
+        <div className="updateuserLeft">
+          <h3 className="updateuserLogo">GWOCU Chat</h3>
+          <span className="updateuserDesc">
             Change your password regularly for more security.
           </span>
         </div>
-        <div className="loginRight">
-          <form ref={formRef} className="loginBox" onSubmit={handleClick}>
+        <div className="updateuserRight">
+          <form ref={formRef} className="updateuserBox" onSubmit={handleClick}>
           <input
               placeholder="Chatbot Key"
               required
               ref={chatbotKey}
-              className="loginInput"
+              className="updateuserInput"
               value = {currentUser.chatbotKey}
               disabled
             />
@@ -71,7 +71,7 @@ export default function Updateuser() {
               placeholder="Username"
               required
               ref={username}
-              className="loginInput"
+              className="updateuserInput"
               value = {currentUser.username}
               disabled
             />
@@ -79,7 +79,7 @@ export default function Updateuser() {
               placeholder="Email"
               required
               ref={email}
-              className="loginInput"
+              className="updateuserInput"
               type="email"
               value = {currentUser.email}
               disabled
@@ -88,21 +88,22 @@ export default function Updateuser() {
               placeholder="New Password"
               required
               ref={password}
-              className="loginInput"
+              className="updateuserInput"
               type="password"
               minLength="6"
+              autocomplete="new-password"
             />
             <input
               placeholder="New Password Again"
               required
               ref={passwordAgain}
-              className="loginInput"
+              className="updateuserInput"
               type="password"
             />
-            <button className="loginButton" type="submit">
+            <button className="updateuserButton" type="submit">
               Change
             </button>
-            <button className="loginRegisterButton"  onClick={() => history.push("/")}>Close</button>
+            <button className="updateuserRegisterButton"  onClick={() => history.push("/")}>Close</button>
           </form>
         </div>
       </div>

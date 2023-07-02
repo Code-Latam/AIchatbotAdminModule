@@ -41,54 +41,56 @@ export default function Register() {
 
   return (
     
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">GWOCU Chat</h3>
-          <span className="loginDesc">
+    <div className="user">
+      <div className="userWrapper">
+        <div className="userLeft">
+          <h3 className="userLogo">GWOCU Chat</h3>
+          <span className="userDesc">
             Register all your users in one place.
           </span>
         </div>
-        <div className="loginRight">
-          <form ref={formRef} className="loginBox" onSubmit={handleClick}>
+        <div className="userRight">
+          <form ref={formRef} className="userBox" onSubmit={handleClick}>
           <input
               placeholder="Chatbot Key"
               required
               ref={chatbotKey}
-              className="loginInput"
+              className="userInput"
             />
             <input
               placeholder="Username"
               required
               ref={username}
-              className="loginInput"
+              className="userInput"
             />
             <input
               placeholder="Email"
               required
               ref={email}
-              className="loginInput"
+              className="userInput"
               type="email"
+              autocomplete="new-password"
             />
             <input
               placeholder="Password"
               required
               ref={password}
-              className="loginInput"
+              className="userInput"
               type="password"
               minLength="6"
+              autocomplete="new-password"
             />
             <input
               placeholder="Password Again"
               required
               ref={passwordAgain}
-              className="loginInput"
+              className="userInput"
               type="password"
             />
-            <button className="loginButton" type="submit">
+            <button className="userButton" type="submit">
               Register
             </button>
-            <button className="loginRegisterButton"  onClick={() => history.push("/")}>Close</button>
+            <button className="userRegisterButton"  onClick={() => history.push("/")}>Close</button>
           </form>
         </div>
       </div>
