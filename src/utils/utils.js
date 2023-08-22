@@ -1,7 +1,7 @@
 const crypto = require('crypto-js');
 const forge = require('node-forge');
 
-function encodebody(originalbody)
+export function encodebody(originalbody)
 {
 
     console.log("Original Body:");
@@ -129,7 +129,7 @@ function CalculateSignature(token,parameters)
     }, {});
   }
 
-  function getDecodedBody(data) {
+  export function getDecodedBody(data) {
     const failure = "Decryption failed. API result unknown"
     if (typeof data === 'string')
     {
@@ -197,5 +197,5 @@ function CalculateSignature(token,parameters)
     
       };
 
-module.exports.encodebody = encodebody;
-module.exports.getDecodedBody = getDecodedBody;
+// module.exports.encodebody = encodebody;
+// module.exports.getDecodedBody = getDecodedBody;
