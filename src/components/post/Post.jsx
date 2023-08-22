@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom";
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
 import {
   RssFeed,
   Chat,
@@ -19,6 +20,8 @@ import {
   School,
   Videocam,
   Adb,
+  Edit,
+  Update,
   Email,
   Delete,
   FileCopy
@@ -49,43 +52,24 @@ function evaluate(S, U) {
 
 export default function Post({ post }) {
 
+  const gwocuSettingsString = localStorage.getItem('gwocu-setting');
+  const gwocuSettings = gwocuSettingsString ? JSON.parse(gwocuSettingsString) : null;
+  const gwoken = gwocuSettings.gwokenEnabled ;
+  const E2EE = gwocuSettings.E2EEEnabled ; 
+  const gwokutoken = gwocuSettings.gwokenToken ;
+
   const [chatTotalSatisfactory, setChatTotalSatisfactory] = useState(0);
   const [chatTotalNotSatisfactory, setChatTotalNotSatisfactory] = useState(0);
   const [chatTotal, setChatTotal] = useState(0);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const clientNr = process.env.REACT_APP_CLIENTNR;
   const chat_url = process.env.REACT_APP_CHAT_URL;
   const admin_module_url = process.env.REACT_APP_ADMIN_URL;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
 
-  
 
-  const { user: currentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const clientNr = user.clientNr;
   
   var history = useHistory();
-
-  // begin go chat
-
-  const handlegochat = async () => {
-    // Getting the user data from the props
-    const { chatbotKey, descriptiveName } = post; 
-      try {
-        const body = {
-          clientNr: clientNr,
-          gwoken: gwokuToken,
-          chatbotKey:chatbotKey,
-          descriptiveName: descriptiveName
-        }
-        console.log("chat_url=" + chat_url)
-        await axios.post(chat_url, body);
-      } catch (err) {
-        // Handle any errors that may occur
-        alert("Something went wrong. The chatbot was not started");
-      }
-  };
-
-  // end go chat
-
   
   
 // A function that handles the delete icon click
@@ -102,13 +86,14 @@ const handleDelete = async () => {
   if (confirmed) {
     // Making a post request to the API with the chattbot data
     try {
-      const body = {
+      const originalbody = {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         chatbotKey:chatbotKey,
         chatbotMaster: chatbotMaster,
         name: name
       }
+      const body = encodebody(originalbody);
+      
       await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/delete", body);
       // Optionally, you can do something after the request is successful
       // For example, alert the user or refresh the page
@@ -116,7 +101,8 @@ const handleDelete = async () => {
       history.go(0);
     } catch (err) {
       // Handle any errors that may occur
-      alert("Something went wrong. The chatbot was not deleted");
+      //alert(err.response.data);
+      alert("an error occured when deleting");
     }
   }
   // If the user cancels, do nothing
@@ -148,51 +134,51 @@ const handleDelete = async () => {
 
   useEffect(() => {
     const fetchChatTotalSatisfactory = async () => {
-      const body =
+      const originalbody =
       {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         chatbotKey: post.chatbotKey,
         chatRequestResult : "FOUND",
         start : formattedDateoneMonthAgo,
         end : getFormattedDate()
       }
+      const body = encodebody(originalbody);
       const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chathistory/queryperiodcount", body);
-      setChatTotalSatisfactory(res.data);
+      setChatTotalSatisfactory(getDecodedBody(res.data));
     };
     fetchChatTotalSatisfactory();
   }, [post.userId]);
 
   useEffect(() => {
     const fetchChatTotalNotSatisfactory = async () => {
-      const body =
+      const originalbody =
       {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         chatbotKey: post.chatbotKey,
         chatRequestResult : "NOT FOUND",
         start : formattedDateoneMonthAgo,
         end : getFormattedDate()
       }
+      const body = encodebody(originalbody);
       const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chathistory/queryperiodcount", body);
-      setChatTotalNotSatisfactory(res.data);
+      setChatTotalNotSatisfactory(getDecodedBody(res.data));
     };
     fetchChatTotalNotSatisfactory();
   }, [post.userId]);
 
   useEffect(() => {
     const fetchChatTotal = async () => {
-      const body =
+      const originalbody =
       {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         chatbotKey: post.chatbotKey,
         chatRequestResult : "ALL",
         start : formattedDateoneMonthAgo,
         end : getFormattedDate()
       }
+      const body = encodebody(originalbody);
       const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chathistory/queryperiodcount", body);
-      setChatTotal(res.data);
+      setChatTotal(getDecodedBody(res.data));
     };
     fetchChatTotal();
   }, [post.userId]);
@@ -204,7 +190,7 @@ const handleDelete = async () => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-          <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}&descriptivename=${post.descriptiveName}`} target="_blank">
+          <a href= {`${chat_url}?chatbotkey=${post.chatbotKey}&descriptivename=${post.descriptiveName}&clientnr=${clientNr}&gwoken=${gwoken}&gwokutoken=${gwokutoken}&E2EE=${E2EE}`} target="_blank">
           <img
           className="postIcon"
           src='assets/gwocu.png'
@@ -238,6 +224,12 @@ const handleDelete = async () => {
             <span className="postLikeCounter"> From a total of {chatTotal} questions last month, the bot gave {chatTotalSatisfactory} satisfactory and {chatTotalNotSatisfactory} unsatisfactory answers</span>
           </div>
           <div className="postBottomRight">
+          <Link to={`/updatechatbot/${post.chatbotKey}/${post.chatbotMaster}/${post.openaiKey}/${post.descriptiveName}/${post.promptTemplate}/${clientNr}/${gwoken}/${gwokutoken}/${E2EE}/${post.publicbot}/${post.paid}/${post.enabled}/${post.isAdminModule}`} style={{ textDecoration: 'none',color: '#03A062'  }} >
+          <Edit
+          className="postIcon"
+          alt="Edit"
+          />
+          </Link>
           <Link to={{ pathname: "/uploadfiles", state: { chatbotKey: post.chatbotKey, descriptiveName: post.descriptiveName,chatbotMaster: post.chatbotMaster } }}>
           <FileCopy
           className="postIcon"
@@ -248,6 +240,7 @@ const handleDelete = async () => {
           <a href={`mailto:${post.email }?subject=Gwocu Chatbot&body=Dear Administrator,%0D%0DYour email has been linked to a chatbot. You will be able to use the Administrative Module and the regular chatbot.%0D%0DPlease find below your login credentials. Change your password as soon as you login.%0D%0DYour credentials are:%0D%0D
 chatbot URL: ${chat_url}/${post.chatbotKey}%0D
 Administrative Module URL: ${admin_module_url}%0D
+ClientNr: ${clientNr}%0D
 ChatbotKey: ${post.chatbotKey}%0D
 email: ${post.email }%0D
 Initial Password: ${post.initialPassword }%0D%0D
@@ -263,6 +256,11 @@ Have fun with your chatbot!%0D`}
           alt="Delete"
           onClick={handleDelete}
           />
+          
+          
+          
+
+
           </div>
         </div>
       </div>

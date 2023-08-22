@@ -5,6 +5,9 @@ import { useHistory } from "react-router";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Topbar from "../../components/topbar/Topbar";
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Registerchatbot() {
   const [publicbotChecked, setPublicbotChecked] = useState(false);
@@ -25,11 +28,10 @@ export default function Registerchatbot() {
   const paid = useRef(false);
   const enabled = useRef(false);
   const isAdminModule = useRef(false);
-  const promptTemplate = useRef();
-  const idEnroller = useRef();
   const history = useHistory();
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+
+  const { user: currentuser } = useContext(AuthContext);
+  const clientNr = currentuser.clientNr;
 
   
 
@@ -57,13 +59,11 @@ export default function Registerchatbot() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    // console.log(publicbotChecked.current.value);
-
+    
    
     
       const chatbot = {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         chatbotMaster: chatbotMaster,
         chatbotKey: chatbotKey.current.value,
         openaiKey: openaiKey.current.value,
@@ -78,10 +78,10 @@ export default function Registerchatbot() {
         idEnroller: username,
       };
 
-      
-      console.log(chatbot);
+      const body = encodebody(chatbot);
+    
       try {
-        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/register", chatbot);
+        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/register",body );
         alert("Chatbot has been registered");
         formRef.current.reset(); // clear the form fields
         // reset the checkboxes
@@ -92,7 +92,7 @@ export default function Registerchatbot() {
 
         history.push(`/registerchatbot/${username}/${chatbotMaster}`);
       } catch (err) {
-        alert(err.response.data)
+        alert(getDecodedBody(err.response.data))
         }
   };
 
@@ -102,7 +102,7 @@ export default function Registerchatbot() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">GWOCU Chat</h3>
+          <h3 className="loginLogo">GWOCU Podium</h3>
           <span className="loginDesc">
             Register all your chatbots in one place.
           </span>

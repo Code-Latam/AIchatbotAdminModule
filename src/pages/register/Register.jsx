@@ -2,6 +2,9 @@ import axios from "axios";
 import { useRef } from "react";
 import "./register.css";
 import { useHistory } from "react-router";
+import {encodebody, getDecodedBody} from "../../utils/utils.js";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Register() {
   const formRef = useRef(null);
@@ -12,8 +15,9 @@ export default function Register() {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useHistory();
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  const { user: currentuser } = useContext(AuthContext);
+  const clientNr = currentuser.clientNr;
+
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -22,19 +26,21 @@ export default function Register() {
     } else {
       const user = {
         clientNr: clientNr,
-        gwoken:gwokuToken,
         chatbotKey: chatbotKey.current.value,
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
       };
+      const body = encodebody(user);
       try {
-        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/auth/register", user);
+        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/auth/register", body);
         alert("User has been registered");
         formRef.current.reset(); // clear the form fields
         history.push("/register");
       } catch (err) {
-        alert(err.response.data)
+        console.log("return from api call");
+        console.log(err.response.data);
+        alert(getDecodedBody(err.response.data));
         }
     }
   };

@@ -90,3 +90,21 @@
     font-weight: 500;
     cursor: pointer;
 }
+.logincheckmark {
+  margin-left: 10px; /* adjust as needed */
+  margin-right: 10px; /* adjust as needed */
+  width: 20px;
+  height: 20px;
+  color: black;
+  accent-color: rgb(44, 67, 3);
+}
+
+.logincheckboxLabel{
+  align-items: center;
+  height: 20px;
+
+  font-size: 18px;
+  padding-left: 20px;;
+  color: grey;
+  margin-right: 10px 
+}

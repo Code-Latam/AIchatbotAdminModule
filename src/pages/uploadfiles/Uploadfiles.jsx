@@ -10,9 +10,6 @@ import FileUpload from "../../components/fileupload/FileUpload";
 
 export default function Uploadfiles() { // use default export here
   const location = useLocation();
-  console.log(location.state.chatbotKey);
-  console.log(location.state.descriptiveName);
-  console.log(location.state.chatbotMaster);
 
   
 

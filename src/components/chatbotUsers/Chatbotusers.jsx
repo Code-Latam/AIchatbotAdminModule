@@ -2,6 +2,9 @@
 import axios from "axios";
 import "./chatbotUsers.css";
 import { useHistory } from "react-router";
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 import {
   RssFeed,
@@ -26,10 +29,10 @@ export default function ChatbotUsers({user}) {
 
   var history = useHistory();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
   const chat_url = process.env.REACT_APP_CHAT_URL;
   const admin_module_url = process.env.REACT_APP_ADMIN_URL;
+  const { user: currentuser } = useContext(AuthContext);
+  const clientNr = currentuser.clientNr;
 
 // A function that handles the delete icon click
 const handleDelete = async () => {
@@ -44,13 +47,13 @@ const handleDelete = async () => {
   if (confirmed) {
     // Making a post request to the API with the user data
     try {
-      const body = {
+      const originalbody = {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         username:username,
         email: email,
         chatbotKey:chatbotKey
       }
+      const body = encodebody(originalbody);
       await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/delete", body);
       // Optionally, you can do something after the request is successful
       // For example, alert the user or refresh the page

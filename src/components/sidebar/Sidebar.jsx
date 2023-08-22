@@ -18,36 +18,31 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
 
 
 export default function Sidebar() {
   const { user } = useContext(AuthContext);
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  const clientNr = user.clientNr;
   const chat_url = process.env.REACT_APP_CHAT_URL;
-  
 
-  console.log(user.chatbotKey);
 
   const [users, setUsers] = useState([]);
 
-  var body = {
+  var originalbody = {
     clientNr: clientNr,
-    gwoken: gwokuToken,
     chatbotKey: user.chatbotKey   
   };
 
+  const body = encodebody(originalbody);
   useEffect(async () => {
-    const result = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/queryall", body);
-
-    // console.log(res.data);
+    const myresult = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/queryall", body);
+    const result = getDecodedBody(myresult.data);
     setUsers(
-      result.data.sort((p1, p2) => {
+      result.sort((p1, p2) => {
         return new Date(p2.createdAt) - new Date(p1.createdAt);
       })
     );
-
-    // setUsers(result.data);
   }, []);
 
 

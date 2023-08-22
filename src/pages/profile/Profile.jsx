@@ -3,32 +3,35 @@ import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Feed from "../../components/feed/Feed";
 import Rightbar from "../../components/rightbar/Rightbar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import {encodebody, getDecodedBody} from "../../utils/utils.js";
+
+import { AuthContext } from "../../context/AuthContext";
+
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  const { user: currentuser } = useContext(AuthContext);
+  const clientNr = currentuser.clientNr;
+
 
   const [user, setUser] = useState({});
 
   const {username,chatbotKey} = useParams();
 
-  var body = {
+  var originalbody = {
     clientNr: clientNr,
-    gwoken: gwokuToken,
     chatbotKey: chatbotKey,
     username: username
   }
-  console.log(useParams())
-  console.log(body);
+  const body = encodebody(originalbody);
 
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/query",body);
-      setUser(res.data);
+      setUser(getDecodedBody(res.data));
     };
     fetchUser();
   }, []);

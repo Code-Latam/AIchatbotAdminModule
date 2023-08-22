@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import "./fileupload.css";
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
 
 const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -59,7 +60,6 @@ class FileUpload extends React.Component {
           spinner.style.display = "none";
           // Do something with the response
           alert(response.data);
-          console.log(response.data);
           // Process the URL if valid
           this.callAPI(this.props.chatbotKey, this.props.chatbotMaster);
           this.callAPI2(this.props.chatbotKey, this.props.chatbotMaster);
@@ -98,18 +98,17 @@ class FileUpload extends React.Component {
 
 
 
-      const body = {
+      const originalbody = {
         clientNr: process.env.REACT_APP_CLIENTNR,
-        gwoken: process.env.REACT_APP_GWOKUTOKEN,
         chatbotKey:chatbotKey,
         chatbotMaster: chatbotMaster,
         url:url
       }
+      const body = encodebody(originalbody);
       axios
         .post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/addurl",body)
         .then((response) => {
           alert(response.data);
-          console.log(response.data);
         })
         .catch((error) => {
           alert(error.response.data);
@@ -138,22 +137,18 @@ class FileUpload extends React.Component {
       // Call the axios API with the URL as a parameter and handle the response and error
 
 
-     console.log("chatbotkeyyy");
-     console.log(chatbotKey);
 
-
-      const body = {
+      const originalbody = {
         clientNr: process.env.REACT_APP_CLIENTNR,
-        gwoken: process.env.REACT_APP_GWOKUTOKEN,
         chatbotKey:chatbotKey,
         chatbotMaster: chatbotMaster,
         url:url
       }
+      const body = encodebody(originalbody);
       axios
         .post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/crawl",body)
         .then((response) => {
           alert(response.data);
-          console.log(response.data);
         })
         .catch((error) => {
           alert(error.response.data);

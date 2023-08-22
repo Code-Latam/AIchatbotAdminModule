@@ -4,44 +4,37 @@ import Share from "../share/Share";
 import "./feed.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
 
 export default function Feed({ username }) {
   const [chatbots, setChatbots] = useState([]);
   const { user } = useContext(AuthContext);
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  const clientNr = user.clientNr;
 
  // get the chatbot master of the chatbot created for this user
 
 
  
 
-  useEffect(() => {
-
-
-    
-
-     
-  
-    
+  useEffect(() => {  
 
     const fetchChatbots = async () => {
       if (!username)
       {
-        // get the chatbot master
         
-        var body = {
+      var originalbody = {
           clientNr: clientNr,
-          gwoken: gwokuToken,
           chatbotMaster: user.chatbotKey
         }
-        console.log("response = ");
-       
+      const body = encodebody(originalbody);
         // query all the bots
-      const res = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/queryall/", body);
-      console.log(res.data);
+      const response = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/chatbots/queryall/", body);
+      const res = getDecodedBody(response.data);
+      console.log("chatbot data");
+      console.log(res);
       setChatbots(
-        res.data.sort((p1, p2) => {
+        res.sort((p1, p2) => {
+        // res.data.sort((p1, p2) => {
           return new Date(p2.createdAt) - new Date(p1.createdAt);
         })
       );

@@ -5,14 +5,15 @@ import { useHistory } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Topbar from "../../components/topbar/Topbar";
+import {encodebody,getDecodedBody} from "../../utils/utils.js";
 
 
 export default function Updateuser() {
 
-  const clientNr = process.env.REACT_APP_CLIENTNR;
-  const gwokuToken = process.env.REACT_APP_GWOKUTOKEN;
+  
   const { user: currentUser } = useContext(AuthContext);
-  console.log(currentUser);
+  const clientNr = currentUser.clientNr;
+  
 
   const formRef = useRef(null);
 
@@ -30,18 +31,18 @@ export default function Updateuser() {
     } else {
       const user = {
         clientNr: clientNr,
-        gwoken: gwokuToken,
         chatbotKey: chatbotKey.current.value,
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
       };
+      const body = encodebody(user);
       try {
-        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/update", user);
+        await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/update", body);
         alert("User has been updated");
         history.push("/");
       } catch (err) {
-        alert(err.response.data)
+        alert(getDecodedBody(err.response.data))
         }
     }
   };

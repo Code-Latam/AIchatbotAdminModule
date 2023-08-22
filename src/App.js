@@ -5,6 +5,7 @@ import Register from "./pages/register/Register";
 import Uploadfiles from "./pages/uploadfiles/Uploadfiles";
 import Updateuser from "./pages/updateuser/Updateuser";
 import Registerchatbot from "./pages/registerchatbot/Registerchatbot";
+import Updatechatbot from "./pages/updatechatbot/Updatechatbot";
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,6 +35,10 @@ function App() {
         </Route>
         <Route path="/registerchatbot/:username/:chatbotMaster">
           <Registerchatbot />
+        </Route>
+        
+        <Route path="/updatechatbot/:PchatbotKey/:PchatbotMaster/:PopenaiKey/:PdescriptiveName/:PpromptTemplate/:PclientNr/:Pgwoken/:Pgwokutoken/:PE2EE/:Ppublicbot/:Ppaid/:Penabled/:PisAdminModule">
+          <Updatechatbot />
         </Route>
         <Route path="/profile/:username/:chatbotKey">
           <Profile />

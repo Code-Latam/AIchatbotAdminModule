@@ -5,16 +5,29 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Topbar() {
+
+  function handleClick() {
+
+    const confirmed = window.confirm(
+      `Are you sure you want to sign out. Please make sure you have your credentials at hand in case you want to sign in again!`
+    );
+    if (confirmed) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("gwocu-setting");
+      history.go(0);
+      }
+  }
+
   const { user } = useContext(AuthContext);
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-      <img src= 'https://chatbotadmin/gwocu.com/assets/gwocu.png' className="logo">
+      <img src= 'https://chatbotadmin.gwocu.com/assets/gwocu.png' className="logo">
       </img>
         <Link to="/" style={{ textDecoration: "none" }}>
-         <span className="logotext">AI Orchestra</span>
+         <span className="logotext">AI Podium</span>
         </Link>
       </div>
       <div className="topbarCenter">
@@ -28,8 +41,9 @@ export default function Topbar() {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">AI Bots</span>
+        <span className="topbarLink" onClick={handleClick}>
+        Sign Out of the Podium
+        </span>
         </div>
         <div className="topbarIcons">
           <div className="topbarIconItem">
