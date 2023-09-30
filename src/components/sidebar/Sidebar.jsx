@@ -72,6 +72,10 @@ export default function Sidebar() {
             <HelpOutline className="sidebarIcon" />
             <span className="sidebarListItemText">Chat History Query</span>
           </li>
+          <li className="sidebarListItem">
+            <PlayCircleFilledOutlined className="sidebarIcon" />
+            <Link to="/explorer" style={{ textDecoration: 'none',color: '#03A062'  }}>APIFny Explorer</Link>
+          </li>
         </ul>
         <hr className="sidebarHr" />
         <h4>Users</h4>
