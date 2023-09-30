@@ -1,4 +1,6 @@
 import Home from "./pages/home/Home";
+
+import Explorer from "./pages/explorer/Explorer";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
@@ -26,6 +28,9 @@ function App() {
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/explorer">
+          <Explorer />
         </Route>
         <Route path="/uploadfiles">
           <Uploadfiles />
