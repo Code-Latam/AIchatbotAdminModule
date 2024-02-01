@@ -13,15 +13,9 @@
     display: flex;
     align-items:normal; 
     border: 1px solid #03A062;
-   
+    
   }
   
-  .bottom-part {
-    /* Set the flex-basis of the bottom part to 70% */
-    height:500px;
-    width: 100%;
-    border: 1px solid #03A062;
-  }
 
   .graph
   {
@@ -33,4 +27,5 @@
     font-size: large;
     cursor: pointer;
     margin:10px;
+    color:blue
   }

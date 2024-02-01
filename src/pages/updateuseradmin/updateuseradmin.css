@@ -1,60 +1,65 @@
-.login {
+.user {
   width: 100vw;
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: #1e1e1e;
+  color: #03A062;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.loginWrapper {
+.userWrapper {
   width: 70%;
   height: 70%;
   display: flex;
 }
 
-.loginLeft,
-.loginRight {
+.userLeft,
+.userRight {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.loginLogo {
+.userLogo {
   font-size: 50px;
   font-weight: 800;
-  color: #0e3a74;
+  color:darkgray;
   margin-bottom: 10px;
 }
 
-.loginDesc {
+.userDesc {
   font-size: 24px;
+  color: darkGray;
 }
 
-.loginBox{
-    height: 200px;
+.userBox{
+    height: 400px;
     padding: 20px;
-    background-color: white;
+    background-color:#98FF98;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.loginInput{
-    height: 50px;
+.userInput{
+    min-height: 50px;
     border-radius: 10px;
     border: 1px solid gray;
     font-size: 18px;
     padding-left: 20px;
+    color:darkgray;  
+    background-color: black;
+    margin-bottom: 2px;
 }
 
-.loginInput:focus{
+.userInput:focus{
     outline: none;
 }
 
-.loginButton{
+.userButton{
     height: 50px;
     border-radius: 10px;
     border: none;
@@ -63,48 +68,25 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    margin-bottom: 2px;
 }
 
-.loginButton:focus{
-  outline: none;
-}
-
-.loginButton:disabled{
-  cursor: not-allowed;
-}
-
-.loginForgot{
+.userForgot{
     text-align: center;
     color: #0e3a74;
 }
 
-.loginRegisterButton{
+.userRegisterButton{
     width: 60%;
     align-self: center;
     height: 50px;
     border-radius: 10px;
     border: none;
-    background-color: #12360b;
-    color: white;
+    background-color: rgb(44, 67, 3);
+    color: darkgray;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-}
-.logincheckmark {
-  margin-left: 10px; /* adjust as needed */
-  margin-right: 10px; /* adjust as needed */
-  width: 20px;
-  height: 20px;
-  color: black;
-  accent-color: rgb(44, 67, 3);
+    margin-bottom: 2px;
 }
 
-.logincheckboxLabel{
-  align-items: center;
-  height: 20px;
-
-  font-size: 18px;
-  padding-left: 20px;;
-  color: grey;
-  margin-right: 10px 
-}

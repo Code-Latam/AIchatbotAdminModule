@@ -19,25 +19,21 @@ export default function Topbar() {
   }
 
   const { user } = useContext(AuthContext);
+  const gwocuSettingsString = localStorage.getItem("gwocu-setting");
+  const gwocuSettings = gwocuSettingsString ? JSON.parse(gwocuSettingsString) : null;
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-      <img src= 'https://chatbotadmin.gwocu.com/assets/gwocu.png' className="logo">
+      <img src= {process.env.REACT_APP_HOST_CENTRAL_BACK + '/upload/images' + gwocuSettings.logo} className="logo">
       </img>
-        <Link to="/" style={{ textDecoration: "none" }}>
-         <span className="logotext">AI Podium</span>
-        </Link>
+      <a href={gwocuSettings.url} target="_blank" style={{ textDecoration: "none" }}>
+      <div className="logotext">{gwocuSettings.clientname} AI Orchestra</div>
+      </a>
       </div>
       <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon" />
-          <input
-            placeholder="Search for chatbot"
-            className="searchInput"
-          />
-        </div>
+        
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
@@ -55,16 +51,8 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-        <Link to={`/updateuser/`}>
-          <img
-            src={
-              user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "person/noAvatar.png"
-            }
-            alt=""
-            className="topbarImg"
-          />
+        <Link to={`/updateuser/`} className="user-container">   
+         <div>{user.username}</div>
         </Link>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Graph } from "react-d3-graph"
-import "./explorerview.css"
+import "./graphview.css"
 import axios from "axios";
 import Modal from "../modal/Modal";
 import Modaltask from "../modaltask/Modaltask";
@@ -26,7 +26,7 @@ const config = {
   freezeAllDragEvents: true
 };
 
-const Explorerview = () => {
+const Graphview = ({ selectedProduct, selectedWork,onTaskChange }) => {
     // Define a state variable to store the data from the API
     const [data, setData] = useState([]);
     const [showModal, setShowModal] = useState(false);
@@ -41,7 +41,11 @@ const Explorerview = () => {
 
     const onClickNode = function(nodeId, node) {
       handleShowModaltask(nodeId, node);
- };
+    };
+
+    const onDoubleClickNode = function(nodeId, node) {
+      onTaskChange("api",nodeId);
+    };
 
  const onZoomChange = function(previousZoom, newZoom) {
 };
@@ -59,27 +63,51 @@ const Explorerview = () => {
 
     const fetchData = async () => {
       try {
-        const mybody = 
-        {
+        const mybody = {
           clientNr: "Pockyt",
-          explorerId: "1"
+          explorerId: "1",
+        };
+        console.log("in fetch");
+        console.log(selectedProduct);
+        console.log(selectedWork);
+
+        if (selectedProduct && selectedWork) {
+          // Case: Both product and workflow are selected
+          mybody.productName = selectedProduct;
+          mybody.name = selectedWork;
+        } else if (selectedProduct) {
+          // Case: Only product is selected
+          mybody.productName = selectedProduct;
         }
+    
+        // Use different API endpoints for each case
+
+
+        let endpoint = "/workflow/queryonegraph";
+    
+        if (!selectedProduct) {
+          endpoint = "/workflow/queryallgraphs";
+        } else if (selectedProduct && !selectedWork) {
+          endpoint = "/workflow/queryallgraphsgivenproduct";
+        }
+    
         // Make the API call using axios and parse the response as JSON
-        const response = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/workflow/querygraph", mybody);
+        const response = await axios.post(process.env.REACT_APP_CENTRAL_BACK + endpoint, mybody);
         const json = response.data;
-  
-        // Set the data state variable with the JSON data
+    
+        // Set the data state variable with the filtered JSON data
         setData(json);
       } catch (error) {
         // Handle any errors
         console.error(error);
       }
     };
+    
   
     // Use useEffect to fetch the data when the component mounts
     useEffect(() => {
       fetchData();
-    }, []);
+    },[selectedProduct,selectedWork]);
 
     return (
       <div className= "App">
@@ -112,13 +140,11 @@ const Explorerview = () => {
               config={config}
               onClickGraph={() => onClickGraph(graph)}
               onClickNode={onClickNode}
+              onDoubleClickNode={onDoubleClickNode}
               onZoomChange={onZoomChange}
             />
             </div>
           ))}
-        </div>
-        <div className="bottom-part">
-        
         </div>
         {showModal && (
         <Modal
@@ -142,4 +168,4 @@ const Explorerview = () => {
     );
           }   
     
-export default Explorerview;
+export default Graphview;

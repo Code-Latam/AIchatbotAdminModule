@@ -2,12 +2,26 @@ import axios from "axios";
 import { useRef } from "react";
 import "./updatechatbot.css";
 import { useHistory } from "react-router";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Topbar from "../../components/topbar/Topbar";
 import {encodebody,getDecodedBody} from "../../utils/utils.js";
-import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import ChatbotUsers from "../../components/chatbotUsers/Chatbotusers";
+import { Link } from 'react-router-dom';
+import {
+  RssFeed,
+  Chat,
+  PlayCircleFilledOutlined,
+  Group,
+  Bookmark,
+  HelpOutline,
+  WorkOutline,
+  Event,
+  School,
+  Videocam,
+  Adb
+} from "@material-ui/icons";
 
 export default function Updatechatbot() {
   const {PchatbotKey,PchatbotMaster,PopenaiKey,PdescriptiveName,PpromptTemplate, PclientNr,Pgwoken,Pgwokutoken,PE2EE,Ppublicbot,Ppaid,Penabled,PisAdminModule} = useParams();
@@ -96,16 +110,39 @@ export default function Updatechatbot() {
         }
   };
 
+  const [users, setUsers] = useState([]);
+
+  var originalbody = {
+    clientNr: clientNr,
+    chatbotKey: PchatbotKey   
+  };
+  const body = encodebody(originalbody);
+  useEffect(async () => {
+    const myresult = await axios.post(process.env.REACT_APP_CENTRAL_BACK + "/users/queryall", body);
+    const result = getDecodedBody(myresult.data);
+    setUsers(
+      result.sort((p1, p2) => {
+        return new Date(p2.createdAt) - new Date(p1.createdAt);
+      })
+    );
+  }, []);
+
   return (
     <>
     <Topbar />
     <div className="updatechatbot">
       <div className="updatechatbotWrapper">
         <div className="updatechatbotLeft">
-          <h3 className="updatechatbotLogo">GWOCU Podium</h3>
-          <span className="updatechatbotDesc">
-            Update your chatbot.
-          </span>
+          <ul className="userList">
+         {users.map((u) => (
+         <ChatbotUsers key={u.id} user={u} source = "chatbotupdate"/>
+          ))}
+        </ul>
+        <div className="registerListItem" >
+        <div  className = "linkItem">
+        <Link to={`/register/${PchatbotKey}`} style={{ textDecoration: 'none',color: '#03A062'  }}>Register New Users</Link>
+        </div>
+        </div>
         </div>
         <div className="updatechatbotRight">
           <form ref={formRef} className="updatechatbotloginBox" onSubmit={handleClick}>
@@ -187,6 +224,7 @@ export default function Updatechatbot() {
             />
             </label>
             </div>
+            
             
             <button className="updatechatbotloginButton" type="submit">
               Update

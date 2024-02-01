@@ -62,7 +62,7 @@ export default function Sidebar() {
           </li>
           <li className="sidebarListItem">
             <Group className="sidebarIcon" />
-            <Link to="/register" style={{ textDecoration: 'none',color: '#03A062'  }}>Register Users</Link>
+            <Link to={`/register/${user.chatbotKey}`} style={{ textDecoration: 'none',color: '#03A062'  }}>Register Users</Link>
           </li>
           <li className="sidebarListItem">
             <Adb className="sidebarIcon" />

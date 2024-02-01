@@ -1,12 +1,14 @@
-import Explorerview from "../../components/explorerview/Explorerview";
+
+import ProductTree from "../../components/producttree/ProductTree";
 import "./explorer.css" ;
 
 export default function Explorer() {
   return (
     <>
-      <div className="explorerContainer">
-        <Explorerview />
+      <div className="WorkflowtreePanel">
+        <ProductTree />
       </div>
+      
     </>
 
   );

@@ -19,7 +19,8 @@ import {
   Videocam,
   Adb,
   Email,
-  Delete
+  Delete,
+  Edit,
 } from "@material-ui/icons";
 
 
@@ -33,6 +34,15 @@ export default function ChatbotUsers({user}) {
   const admin_module_url = process.env.REACT_APP_ADMIN_URL;
   const { user: currentuser } = useContext(AuthContext);
   const clientNr = currentuser.clientNr;
+
+  const handleEdit = () => {
+    console.log("USER");
+    console.log(user);
+    history.push({
+      pathname: "/updateuseradmin", 
+      state: { user, clientNr },
+    });
+  };
 
 // A function that handles the delete icon click
 const handleDelete = async () => {
@@ -75,21 +85,12 @@ return (
     <input type="hidden" value={user.chatbotKey} />
     <span className="sidebarUserName">{user.username}</span>
 {/* Adding a clickable email icon */}
-    <a href={`mailto:${user.email }?subject=Gwocu Chatbot&body=Dear ${user.username},%0D%0DYour email has been linked to a chatbot. If you are an administrator, you will be able to use the Administrative Module.%0D%0DIf you are only a chatbot user you will only be able to use the chatbot.%0D%0DPlease find below your login credentials. Change your password as soon as you login.%0D%0DYour credentials are:%0D%0D
-chatbot URL: ${chat_url}/${user.chatbotKey}%0D
-chatbot Admin Module URL: ${admin_module_url}%0D
-ChatbotKey: ${user.chatbotKey}%0D
-email: ${user.email }%0D
-Initial Password: Your password will be sent through a seperate channel.%0D%0D
-Have fun with your chatbot!%0D`}
-          >
-          <Email
-          className="userIcon"
-          src={`${PF}email.png`}
-          alt="email"
-          />
-          </a>
-
+    
+      <Edit
+      className="userIcon"
+      alt="Edit"
+      onClick={handleEdit}
+    />
     {/* Adding a clickable delete icon with an onClick handler */}
     <Delete
       className="userIcon"
@@ -97,6 +98,20 @@ Have fun with your chatbot!%0D`}
       alt="Delete"
       onClick={handleDelete}
     />
+    <a href={`mailto:${user.email }?subject=Gwocu Chatbot&body=Dear ${user.username},%0D%0DYour email has been linked to a chatbot. If you are an administrator, you will be able to use the Administrative Module.%0D%0DIf you are only a chatbot user you will only be able to use the chatbot.%0D%0DPlease find below your login credentials. Change your password as soon as you login.%0D%0DYour credentials are:%0D%0D
+      chatbot URL: ${chat_url}/${user.chatbotKey}%0D
+      chatbot Admin Module URL: ${admin_module_url}%0D
+      ChatbotKey: ${user.chatbotKey}%0D
+      email: ${user.email }%0D
+      Initial Password: Your password will be sent through a seperate channel.%0D%0D
+      Have fun with your chatbot!%0D`}
+                >
+          <Email
+          className="userIcon"
+          src={`${PF}email.png`}
+          alt="email"
+          />
+          </a>
   </li>
 );
 }

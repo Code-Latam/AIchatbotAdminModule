@@ -72,12 +72,14 @@ export default function Login() {
               defaultValue={defaultClientNr}
             />
           <input
-              type="password"
+              value = {process.env.REACT_APP_GWOKUTOKEN}
               placeholder="Gwoku Token"
               required
               ref={gwokuToken}
               className="loginInput"
-              defaultValue={defaultGwokuToken}
+              type = "password"
+              defaultValue={process.env.REACT_APP_GWOKUTOKEN}
+              disabled
             />
            
           <input
@@ -101,6 +103,8 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
+            { false && (
+            <div>
             <label className="logincheckboxLabel">
             Gwoken Enabled
               <input
@@ -123,6 +127,8 @@ export default function Login() {
               defaultValue={E2EEEnabledChecked}
               />
             </label>
+            </div>
+            )}
             <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />

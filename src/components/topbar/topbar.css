@@ -10,7 +10,9 @@
 }
 
 .topbarLeft {
-  flex: 3;
+  flex: 5;
+  display: flex;
+  flex-direction: row;
 }
 
 .logo {
@@ -19,17 +21,20 @@
   cursor: pointer;
   width: 30px;
   height: 30px;
+ 
 }
 
 .logotext {
-  font-size: 200%;
+  font-size: 150%;
   margin-left: 20px;
   cursor: pointer;
-  color:darkgrey
+  color:black;
+  width: 100%
+  
 }
 
 .topbarCenter {
-  flex: 5;
+  flex: 2;
 }
 
 .searchbar {
@@ -56,7 +61,7 @@
 }
 
 .topbarRight {
-  flex: 4;
+  flex: 3;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -96,9 +101,10 @@
 }
 
 .topbarImg {
-  width: 32px;
-  height: 32px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  object-fit: cover;
   cursor: pointer;
 }
+
+

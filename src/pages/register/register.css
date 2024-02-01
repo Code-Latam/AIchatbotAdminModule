@@ -52,6 +52,7 @@
     padding-left: 20px;
     color:darkgray;  
     background-color: black;
+    margin-bottom: 2px;
 }
 
 .userInput:focus{
@@ -67,6 +68,7 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    margin-bottom: 2px;
 }
 
 .userForgot{
@@ -85,4 +87,6 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    margin-bottom: 2px;
 }
+

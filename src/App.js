@@ -6,6 +6,7 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Uploadfiles from "./pages/uploadfiles/Uploadfiles";
 import Updateuser from "./pages/updateuser/Updateuser";
+import Updateuseradmin from "./pages/updateuseradmin/Updateuseradmin";
 import Registerchatbot from "./pages/registerchatbot/Registerchatbot";
 import Updatechatbot from "./pages/updatechatbot/Updatechatbot";
 import {
@@ -26,7 +27,7 @@ function App() {
           {user ? <Home /> : <Login />}
         </Route>
         <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
-        <Route path="/register">
+        <Route path="/register/:chatbotKey">
           <Register />
         </Route>
         <Route path="/explorer">
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path="/updateuser">
           <Updateuser />
+        </Route>
+        <Route path="/updateuseradmin">
+          <Updateuseradmin />
         </Route>
         <Route path="/registerchatbot/:username/:chatbotMaster">
           <Registerchatbot />
