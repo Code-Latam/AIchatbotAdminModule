@@ -54,9 +54,12 @@ export default function Post({ post }) {
 
   const gwocuSettingsString = localStorage.getItem('gwocu-setting');
   const gwocuSettings = gwocuSettingsString ? JSON.parse(gwocuSettingsString) : null;
-  const gwoken = gwocuSettings.gwokenEnabled ;
-  const E2EE = gwocuSettings.E2EEEnabled ; 
-  const gwokutoken = gwocuSettings.gwokenToken ;
+  
+  const gwoken = String(gwocuSettings.gwoken) ;
+  console.log("GWOKENENABLED");
+  console.log(gwoken);
+  const E2EE = gwocuSettings.endtoend ; 
+  const gwokutoken = gwocuSettings.clientToken ;
 
   const [chatTotalSatisfactory, setChatTotalSatisfactory] = useState(0);
   const [chatTotalNotSatisfactory, setChatTotalNotSatisfactory] = useState(0);

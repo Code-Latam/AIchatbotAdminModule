@@ -4,8 +4,7 @@
   overflow-y: scroll;
   position: sticky;
   top: 50px;
-  background-color: #1e1e1e ;
-  color: #03A062
+  
 }
 
 ::-webkit-scrollbar {
@@ -36,7 +35,7 @@
 
 .sidebarIcon {
   margin-right: 15px;
-  color: darkgray;
+  
 }
 
 .sidebarButton {

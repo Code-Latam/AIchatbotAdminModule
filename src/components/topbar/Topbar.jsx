@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
+
 export default function Topbar() {
 
   function handleClick() {
@@ -26,8 +27,7 @@ export default function Topbar() {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-      <img src= {process.env.REACT_APP_HOST_CENTRAL_BACK + '/upload/images' + gwocuSettings.logo} className="logo">
-      </img>
+      
       <a href={gwocuSettings.url} target="_blank" style={{ textDecoration: "none" }}>
       <div className="logotext">{gwocuSettings.clientname} AI Orchestra</div>
       </a>
