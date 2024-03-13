@@ -29,7 +29,7 @@ export default function Topbar() {
       <div className="topbarLeft">
       
       <a href={gwocuSettings.url} target="_blank" style={{ textDecoration: "none" }}>
-      <div className="logotext">{gwocuSettings.clientname} AI Orchestra</div>
+      <div className="logotext">{gwocuSettings.clientname} Podium</div>
       </a>
       </div>
       <div className="topbarCenter">

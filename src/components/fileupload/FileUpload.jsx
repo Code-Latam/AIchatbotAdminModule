@@ -31,16 +31,18 @@ class FileUpload extends React.Component {
       // Create a new FormData object
       const formData = new FormData();
 
+       // append additional parameters that are needed
+       formData.append("clientNr", process.env.REACT_APP_CLIENTNR);
+       formData.append("gwoken", process.env.REACT_APP_GWOKUTOKEN);
+       formData.append("chatbotKey", this.props.chatbotKey);
+       formData.append("chatbotMaster", this.props.chatbotMaster);
+
       // Loop through all the files and append them to the FormData object using the same name as in the server-side code
       for (let i = 0; i < files.length; i++) {
         formData.append("file", files[i]);
       }
 
-      // append additional parameters that are needed
-      formData.append("clientNr", process.env.REACT_APP_CLIENTNR);
-      formData.append("gwoken", process.env.REACT_APP_GWOKUTOKEN);
-      formData.append("chatbotKey", this.props.chatbotKey);
-      formData.append("chatbotMaster", this.props.chatbotMaster);
+     
 
       // Get the spinner element
       const spinner = document.getElementById("spinner");

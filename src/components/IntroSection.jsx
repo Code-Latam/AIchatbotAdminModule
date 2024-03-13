@@ -2,7 +2,7 @@ import React from "react";
 const IntroSection = () => {
   return (
     <div id="introsection">
-      <h1>GWOCU Custom Trained ChatGPT Model for FinTechs</h1>
+      <h1>Custom Trained Chat Model</h1>
       <p>
         Features:
         <ul>

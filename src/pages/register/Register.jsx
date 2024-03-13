@@ -117,7 +117,7 @@ export default function Register() {
     <div className="user">
       <div className="userWrapper">
         <div className="userLeft">
-          <h3 className="userLogo">GWOCU Chat</h3>
+          <h3 className="userLogo">Podium Chat</h3>
           <span className="userDesc">
             Register all your users in one place.
           </span>

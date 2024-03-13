@@ -56,9 +56,9 @@ export default function Login() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">GWOCU Podium Login</h3>
+          <h3 className="loginLogo">Podium Login</h3>
           <span className="loginDesc">
-            GWOCU AI Podium.
+            Podium.
           </span>
         </div>
         <div className="loginRight">

@@ -102,7 +102,7 @@ export default function Registerchatbot() {
     <div className="login">
       <div className="loginWrapper">
         <div className="loginLeft">
-          <h3 className="loginLogo">GWOCU Podium</h3>
+          <h3 className="loginLogo">Podium</h3>
           <span className="loginDesc">
             Register all your chatbots in one place.
           </span>
